@@ -1,5 +1,19 @@
 # **A hotel ordering website made with Django**
 
+Sample video demo => https://mega.nz/file/mO4V0ISA#INd-lyXZIfuMFrvzbjgdzIr4wWGd1Fvau8TYK72BIB8
+
+Images => https://mega.nz/file/eOoXVaqT#yNPa51Ax418XK71cBv_hXZ1wfgXC4CL4Athbvm0Wg_0
+
+Mobile view => https://mega.nz/file/qSAlESTC#HEEUVQgCX5tKWiGwWOcZkXiYxnTo3LTFSTbgCQ_cFXk
+
+Schema =>
+
+Live website =>
+
+Logins:
+  Username: admin2
+  Password: changeme
+  
 ## Features
 1. Login with Google supported
 2. Able to track orders
@@ -48,3 +62,7 @@ You can create an admin account by:
 ```
 python manage.py createsuperuser
 ```
+
+[X] SMS and Email delivery working
+[X] Mpesa STK Push
+[X] Google Login and Reset password
