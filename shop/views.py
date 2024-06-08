@@ -82,7 +82,7 @@ def tracker(request):
                             {
                                 "status": "success",
                                 "updates": updates,
-                                "itemsJson": order[0].items_json,
+                                "itemsJson": order.items_json,
                             },
                             default=str,
                         )
@@ -157,6 +157,15 @@ def checkout(request):
         estate = request.POST.get("estate", "")
         apartment = request.POST.get("apartment", "")
         phone = request.POST.get("phone", "")
+
+        # Create order ID based on user's first name and food names abbreviation
+        first_name = name.split()
+        food_abbr = "".join([item.upper() for item in eval(items_json).keys()])
+        order_id = f"{first_name[1:4]}{food_abbr[2:5]}"
+
+        # Introduce a discount code based on the user's initial
+        discount_code = f"{name.upper()}DISCOUNT"
+
         order = Orders(
             items_json=items_json,
             userId=user_id,
@@ -183,16 +192,20 @@ def checkout(request):
         rider_details = "Rider John, +254712345678"
         customer_care = "+254712345678"
 
-        # Send SMS
+        # Prepare multi-line message
         message = f"""Thank you {name} for your order!
-                        Order Details: {items_json}
-                        Order ID: {id}
-                        Estimated Delivery Time: {formatted_estimated_time}
-                        Rider Details: {rider_details}
-                        Customer Care: {customer_care}
-                        Total Amount: {amount}
-                        Delivery is free!
-                        Thank you for choosing Seesharp Hotel!"""
+                    Order Details:
+                    {eval(items_json)} - KES {eval(items_json)}
+                    Order ID: {order_id}
+                    Estimated Delivery Time: {formatted_estimated_time}
+                    Rider Details: {rider_details}
+                    Customer Care: {customer_care}
+                    Total Amount: KES {amount}
+                    Delivery is free!
+                    Use discount code {discount_code} on your next order.
+                    Thank you for choosing Seesharp Hotel!
+                """
+
         try:
             response = sms.send(message, [phone])
             print(response)
@@ -235,7 +248,7 @@ def checkout(request):
 def productView(request, myid):
     product = Product.objects.filter(id=myid)
     # print(product)
-    return render(request, "shop/prodView.html", {"product": product[0]})
+    return render(request, "shop/prodView.html", {"product": product})
 
 
 def handeLogin(request):

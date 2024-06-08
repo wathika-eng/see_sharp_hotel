@@ -21,7 +21,12 @@ ALLOWED_HOSTS = ["*"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 # Application definition
-
+CSRF_TRUSTED_ORIGINS = [
+    "https://d260-2a09-bac1-3be0-8-00-2d-99.ngrok-free.app",
+    "https://d260-2a09-bac1-3be0-8-00-2d-99.ngrok-free.app/accounts/google/login",
+    # "https://classnotes.azurewebsites.net",
+    # "https://plainly-intent-dog.ngrok-free.app",
+]
 INSTALLED_APPS = [
     "rangefilter",
     "shop.apps.ShopConfig",

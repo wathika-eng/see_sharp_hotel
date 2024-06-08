@@ -64,5 +64,7 @@ python manage.py createsuperuser
 ```
 
 [X] SMS and Email delivery working
+
 [X] Mpesa STK Push
+
 [X] Google Login and Reset password
