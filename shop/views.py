@@ -180,8 +180,8 @@ def checkout(request):
         estimated_delivery_time = now + datetime.timedelta(hours=1)
         formatted_estimated_time = estimated_delivery_time.strftime("%Y-%m-%d %H:%M:%S")
 
-        rider_details = "Rider John, +254712345678"  # Replace with actual rider details
-        customer_care = "+254712345678"  # Replace with actual customer care number
+        rider_details = "Rider John, +254712345678"
+        customer_care = "+254712345678"
 
         # Send SMS
         message = f"""Thank you {name} for your order!
@@ -194,12 +194,10 @@ def checkout(request):
                         Delivery is free!
                         Thank you for choosing Seesharp Hotel!"""
         try:
-            # response = sms.send(message, [phone])
-            # print(response)
-            pass
+            response = sms.send(message, [phone])
+            print(response)
         except Exception as e:
-            pass
-            # print(f"Error sending SMS: {e}")
+            print(f"Error sending SMS: {e}")
         finally:
             email = EmailMessage(
                 "Order Confirmation",
@@ -208,7 +206,7 @@ def checkout(request):
                 [email],  # List of recipient email addresses
             )
             email.send()
-            print(f"Email sent successfully to {email}")
+            print(f"Email sent successfully to {name[:6]}")
         if "onlinePay" in request.POST:
             try:
                 cl = MpesaClient()
