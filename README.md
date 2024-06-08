@@ -63,8 +63,21 @@ You can create an admin account by:
 python manage.py createsuperuser
 ```
 
+To run tests:
+```
+python manage.py test (security && configs)
+```
+
+```
+python manage.py test shop.tests (database)
+```
+
 [X] SMS and Email delivery working
 
 [X] Mpesa STK Push
 
 [X] Google Login and Reset password
+
+# Enquiries
+
+https://stackoverflow.com/questions/5420789/how-to-install-psycopg2-with-pip-on-python - solves pyscopg2 installation error

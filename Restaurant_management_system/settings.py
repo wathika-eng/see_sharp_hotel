@@ -17,12 +17,12 @@ SECRET_KEY = os.environ["SECRET_KEY"] or UNIQUE_STRING
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = false
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["https://hotel.wathika.tech/shop/", "http://127.0.0.1"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 # Application definition
 CSRF_TRUSTED_ORIGINS = [
-    "https://push-hotel.onrender.com"
+    "https://hotel.wathika.tech/shop"
     # "https://classnotes.azurewebsites.net",
     # "https://plainly-intent-dog.ngrok-free.app",
 ]
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -73,7 +74,7 @@ SOCIALACCOUNT_PROVIDERS = {
         },
     }
 }
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 ROOT_URLCONF = "Restaurant_management_system.urls"
 
 TEMPLATES = [
@@ -158,6 +159,15 @@ STATIC_URL = "/static/"
 
 # Managing media
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# STORAGES = {
+#     # ...
+#     "staticfiles": {
+#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+#     },
+# }
+
 MEDIA_URL = "/media/"
 MPESA_ENVIRONMENT = os.environ["MPESA_ENVIRONMENT"]
 
@@ -212,13 +222,16 @@ EMAIL_TIMEOUT = None
 DEFAULT_FROM_EMAIL = "seasharp <noreply@seasharp.com>"
 
 
-###SECURITY
+# SECURITY
 
 
-# SESSION_COOKIE_SECURE = True
-# SESSION_COOKIE_HTTPONLY = True
-# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
-# SESSION_COOKIE_HTTPONLY = True
-# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+if DEBUG:
+    pass
+else:
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
