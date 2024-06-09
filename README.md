@@ -11,8 +11,9 @@ Schema =>
 Live website =>
 
 Logins:
-  Username: admin2
-  Password: changeme
+  Username: demo2@gmail.com
+
+  Password: example@gmail.com
   
 ## Features
 1. Login with Google supported
