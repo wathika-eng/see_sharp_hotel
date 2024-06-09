@@ -17,7 +17,7 @@ SECRET_KEY = os.environ["SECRET_KEY"] or UNIQUE_STRING
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = false
 
-ALLOWED_HOSTS = ["https://hotel.wathika.tech/shop/", "http://127.0.0.1"]
+ALLOWED_HOSTS = ["hotel.wathika.tech/shop", "127.0.0.1"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 # Application definition
