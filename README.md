@@ -43,7 +43,9 @@ pip install -r requirements.txt
 ```
 
 Rename the .env.local to .env
-
+```
+cp .env.local .env
+```
 Get all required variables from cloud console, daraja api and Gmail settings
 
 ```
